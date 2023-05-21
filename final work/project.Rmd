@@ -55,8 +55,7 @@ For the second question which is "How did France conduct it's nuclear tests?", i
 
 # Data
 
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, echo=FALSE}
 library(tidyverse)
 library(readr)
 nuclear_explosions <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-08-20/nuclear_explosions.csv")
