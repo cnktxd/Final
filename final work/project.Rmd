@@ -1,0 +1,110 @@
+---
+title: "Nuclear Explosion Tests"
+author: 
+  - Soyugur, Cankat[^1]
+bibliography: ./bibliography/biblio.bib
+csl: ./csl/apa.csl
+header-includes:
+  - \usepackage{polyglossia}
+  - \setmainlanguage{english}
+  - \usepackage{booktabs}
+  - \usepackage{caption} 
+  - \captionsetup[table]{skip=10pt}
+output:
+  bookdown::pdf_document2:
+    fig_caption: yes
+    fig_height: 3
+    fig_width: 4
+    keep_tex: no
+    latex_engine: xelatex
+    number_sections: yes
+    toc: no
+geometry: margin=1in
+link-citations: yes
+urlcolor: blue
+fontsize: 12pt
+biblio-style: apalike
+abstract: |
+  This research is about the nuclear explosion testings that happened between 1945 and 1998. In this research the tests of the USA and France will be discussed with regards to the questions given. The main dataset(nuclear_explosions) contains 14 variables that shows the related information about the explosions such as upper and lower yield. The second(n_occur) has 2 variables.
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+<!-- ======================================================================= -->
+<!-- ============================== FOOTNOTES ============================== -->
+<!-- ======================================================================= -->
+[^1]: 20080501
+
+# Introduction
+The purpose of my work is to investigate the dataset about nuclear explosions. By editing the given dataset, I removed the rows that included "NA" values and also deleted the columns that were no use to me such as "magnitude_body" and "magnitude_surface". The other variables are: date_long(Shows the complete date of the testing), year, country(Which country conducted the test), region(Where the test was conducted at), latitude, longitude, depth, yield_lower, yield_higher, purpose(Why the test was conducted for), name(Name of the detonated warhead) and type(How the nuclear test was conducted). I found this data from "https://github.com/rfordatascience/tidytuesday". With cropping the rows that had "NA" values, I have 1382 entries in total.
+
+The questions I decided on are "In which test site did the USA conduct the most nuclear tests?" and "Where did France conduct it's nuclear tests at". These questions are related to the 4 articles I have found and they provided me with extra information I stated in the literature review section. Also from the dataset, I can gather the needed data by using some functional codes. 
+
+In this research, there will be 2 researches about 2 different questions. For the first question, I will compare the most occurances of US nuclear tests in different test sites and for the second question, I will create another occurance list of French nuclear tests by "Type" which shows the method that the nuclear test was conducted by. In both researches, I will create and use graphs that will make the research easier to understand.
+
+## Literature Review
+
+Even though the literature I found is mostly made of data from the testings of nuclear weapons, the 4 articles and reports I found also include and give valuable information about the questions I am asking.
+
+For the first question, which is "In which test site did the USA conduct the most nuclear tests?". The US is shown to have conducted almost all of it's nuclear tests in Nevada Test Site or NTS as an abbreviation. Before the tests at NTS, USA conducted it's tests at various places around the pacific as given in quote: [@bergkvist:2000] "Nuclear weapon development continued in the USA and tests were conducted in 1946-62 at various atolls and islands in the Pacific Ocean. The first hydrogen bomb was tested in 1951, at Enewetak Atoll, then part of a UN Trust territory administered by the USA, now part of the Marshall Islands.".In the introduction section of the article from [@anaïs:2016] it is stated how many tests were conducted and how big of a yield the tests had at the NTS is stated, which is also relevant to my first question with quote: "At the Nevada Test Site (NTS) northwest of Las Vegas, Nevada, 928 above- and below-ground nuclear tests occurred between 1951 and 1992. There were nearly 90 tests at the NTS in 1962 alone (NTS interviewee). Bombs of 61 and 74 kilotonnes were detonated at the NTS during the 1950s – by contrast, the bomb dropped on Hiroshima had a nuclear yield of approximately 15 kilotonnes."
+
+For the second question which is "How did France conduct it's nuclear tests?", information about the French nuclear tests are less shared to the public than the USA's nuclear tests because of various reasons. These reasons include the failures of the tests, the health problems created by the test as stated in [@danielsson:1984] with quote: "Most political, church and civic leaders in French Polynesia immediately voiced strong fears that any nuclear tests made in the Tuamotus might, as the American tests did in Micronesia, adversely affect the health of the 7 000 people living there." and "By the beginning of July 1966, after three years of intense preparations, the Moruroa testing base was operational. The first bomb was placed on a barge anchored in the lagoon and detonated. The result was a catastrophe-all the water contained in the shallow reef basin was sucked up into the air and then rained down, covering all islets with heaps of irradiated fish and clams, whose slowly rotting flesh continued to stink for weeks." However, from [@willis:2006] it can be said that the testing of the French warheads were mostly conducted in the French Polynesia, especially in Moruroa and Tuamotus islands, but these were also not that effective and therefore, were not reported as after the failure of the first few tests, the types of which were "SURFACE" and "TOWER", the French converted to different types of testing types. 
+
+
+
+# Data
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(readr)
+nuclear_explosions <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-08-20/nuclear_explosions.csv")
+n_occur <- read_csv("C:/Users/canso/Desktop/Final/final work/data/n_occur.csv")
+```
+
+```{r results='asis'}
+library(xtable) 
+library(summarytools)
+st_options(lang = "en")
+
+nuclear_explosions %>%
+    select("date_long", "year", "id_no", "country", "region", "source","latitude","longitude","depth","yield_lower","yield_upper","purpose","name","type") %>% 
+    descr(stats = c("mean", "sd", "min", "med", "max"), transpose = TRUE) %>% 
+    xtable(caption = "Summary Statistics",
+           label = "tab:summary",
+           align = c("l", "c", "c", "c", "c", "c")) %>% 
+    print(booktabs = TRUE, comment = FALSE, caption.placement = "top")
+```
+
+
+# Methods and Data Analysis
+In this section describe the methods that you use to achieve the purpose of the study. You should use the appropriate analysis methods (such as hypothesis tests and correlation analysis) that we covered in the class. If you want, you can also use other methods that we haven't covered. If you think some method is more suitable for the purpose of the analysis and the data set, you can use that method.
+
+For example, if you are performing regression analysis, discuss your predicted equation in this section. Write your equations and mathematical expressions using $LaTeX$.
+
+$$
+Y_t = \beta_0 + \beta_N N_t + \beta_P P_t + \beta_I I_t + \varepsilon_t
+$$
+
+This section should also include different tables and plots. You can add histograms, scatter plots (such as Figure \@ref(fig:plot)), box plots, etc. Make the necessary references to your figures as shown in the previous sentence.
+
+
+```{r plot, fig.align='center', fig.cap='An Awesome Plot'}
+ggplot(n_occur) +
+  aes(x = Freq) +
+  geom_histogram()
+```
+
+
+# Conclusion
+Summarize the results of your analysis in this section. Discuss to what extent your results responded to the research question you identified at the beginning and how this work could be improved in the future.
+
+**References section is created automatically by Rmarkdown. There is no need to change the references section in the draft file.**
+
+**_You shouldn't delete the last 3 lines. Those lines are required for References section._**
+
+\newpage
+# References {#references}
+<div id="refs"></div>
+
