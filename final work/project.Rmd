@@ -63,7 +63,7 @@ nuclear_explosions <- readr::read_csv("https://raw.githubusercontent.com/rfordat
 n_occur <- read_csv("C:/Users/canso/Desktop/Final/final work/data/n_occur.csv")
 ```
 
-```{r results='asis'}
+```{r results='asis',echo=FALSE, message=FALSE, warning=FALSE}
 library(xtable) 
 library(summarytools)
 st_options(lang = "en")
@@ -90,7 +90,10 @@ $$
 This section should also include different tables and plots. You can add histograms, scatter plots (such as Figure \@ref(fig:plot)), box plots, etc. Make the necessary references to your figures as shown in the previous sentence.
 
 
+
+
 ```{r plot, fig.align='center', fig.cap='An Awesome Plot'}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 ggplot(n_occur) +
   aes(x = Freq) +
   geom_histogram()
