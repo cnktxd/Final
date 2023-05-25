@@ -60,8 +60,8 @@ Information about the French nuclear tests are less shared to the public than th
 ```{r message=FALSE, warning=FALSE, echo=FALSE}
 library(tidyverse)
 library(readr)
-nuclear_explosions1 <- read_csv("C:/Users/canso/Desktop/Final/final work/data/nuclear_explosions1.csv")
-comparison1 <- read_csv("/Users/canso/Desktop/Final/final work/data/comparison1.csv")
+nuclear_explosions1 <- read_csv("./data/nuclear_explosions1.csv")
+comparison1 <- read_csv("./data/comparison1.csv")
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
@@ -111,7 +111,7 @@ library(extrafont)
 
 
 ggplot(data=comparison1, aes(x=yield_upper, group=country, fill=country)) +
-    geom_density(adjust=170, alpha=1, ) +
+    geom_density(adjust=180, alpha=1, ) +
     theme_ipsum() +
     facet_wrap(~country) +
   ggthemes::theme_stata() +
@@ -120,20 +120,46 @@ ggplot(data=comparison1, aes(x=yield_upper, group=country, fill=country)) +
 
 ```{r plot1, fig.align='center', fig.cap='An'}
 ```{r echo=FALSE}
-library(hrbrthemes)
-library(extrafont)
-library(ggplot2)
-library(dplyr)
-library(tidyr)
 library(viridis)
 
-ggplot(data=comparison1, aes(x=yield_upper,mean(x=226.34)  group=country, fill=country)) +
-    geom_density(adjust=180, alpha=0.6) +
-    ggthemes::theme_stata() +
-    theme(legend.position = "none")
+ggplot(data=comparison1, aes(x=yield_upper, group=country, fill=country)) +
+    geom_density(adjust=40, alpha=0.6) +
+    ggthemes::theme_stata() 
 ```
 
+```{r plot7, fig.align='center', fig.cap='An'}
+```{r echo=FALSE}
+library(ggridges)
+library(ggplot2)
+library(viridis)
+library(hrbrthemes)
+library(forcats)
 
+ggplot(comparison1, aes(x = yield_upper, y = country, fill = stat(x))) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.1, gradient_lwd = 1.) +
+  scale_x_continuous(expand = c(0, 0)) +
+  scale_y_discrete(expand = expand_scale(mult = c(1, 0.25))) +
+  scale_fill_viridis_c(name = "Height of the test", option = "C") +
+  labs(
+    title = 'Nuclear Explosion Tests',
+    subtitle = 'Comparison of French and American tests'
+  ) +
+  theme_ridges(font_size = 13, grid = TRUE) + 
+  theme(axis.title.y = element_blank())
+    
+```
+
+```{r plot8, fig.align='center', fig.cap='An'}
+```{r echo=FALSE}
+library(ggridges)
+library(ggplot2)
+library(viridis)
+library(hrbrthemes)
+library(forcats)
+ ggplot(comparison1, aes(x = yield_upper, y = country, fill = country)) + 
+   geom_density_ridges(scale = 4) + 
+   scale_fill_cyclical(values = c("blue", "green"))
+```
 
 # Conclusion
 Summarize the results of your analysis in this section. Discuss to what extent your results responded to the research question you identified at the beginning and how this work could be improved in the future.
