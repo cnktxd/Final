@@ -39,17 +39,19 @@ knitr::opts_chunk$set(cache = FALSE, echo = TRUE, message = FALSE, warning = FAL
 # Introduction
 The purpose of my work is to investigate the dataset about nuclear explosions. By editing the given dataset, I removed the rows that included "NA" values and also deleted the columns that were no use to me such as "magnitude_body" and "magnitude_surface". The other variables are: date_long(Shows the complete date of the testing), year, country(Which country conducted the test), region(Where the test was conducted at), latitude, longitude, depth, yield_lower, yield_higher, purpose(Why the test was conducted for), name(Name of the detonated warhead) and type(How the nuclear test was conducted). I found this data from "https://github.com/rfordatascience/tidytuesday". With cropping the rows that had "NA" values, I have 1382 entries in total.
 
-The questions I decided on are "In which test site did the USA conduct the most nuclear tests?" and "Where did France conduct it's nuclear tests at". These questions are related to the 4 articles I have found and they provided me with extra information I stated in the literature review section. Also from the dataset, I can gather the needed data by using some functional codes. 
+The question I decided on is "Were the USA's nuclear tests more effective than the French nuclear tests on average?". The question is related with the 4 articles I have found and they provided me with extra information I stated in the literature review section. Also from the dataset, I can gather the needed data by using some functional codes. 
 
-In this research, there will be 2 researches about 2 different questions. For the first question, I will compare the most occurances of US nuclear tests in different test sites and for the second question, I will create another occurance list of French nuclear tests by "Type" which shows the method that the nuclear test was conducted by. In both researches, I will create and use graphs that will make the research easier to understand.
+For the analysis, I will compare the occurances of US nuclear tests and the French nuclear tests with regards to the upper and lower yield to understand the effectiveness of the tests. I will be using a T-Test for this research in order do a better comparison.
+
+The test is two-sided. The null hypothesis is "USA's nuclear tests were more efficent than the French ones. The alternative hypothesis is "USA's nuclear tests weren't more efficent than the French ones." 
 
 ## Literature Review
 
-Even though the literature I found is mostly made of data from the testings of nuclear weapons, the 4 articles and reports I found also include and give valuable information about the questions I am asking.
+Even though the literature I found is mostly made of data from the tests of nuclear weapons, the 4 articles and reports I found also include and give valuable information about the question.
 
-For the first question, which is "In which test site did the USA conduct the most nuclear tests?". The US is shown to have conducted almost all of it's nuclear tests in Nevada Test Site or NTS as an abbreviation. Before the tests at NTS, USA conducted it's tests at various places around the pacific as given in quote: [@bergkvist:2000] "Nuclear weapon development continued in the USA and tests were conducted in 1946-62 at various atolls and islands in the Pacific Ocean. The first hydrogen bomb was tested in 1951, at Enewetak Atoll, then part of a UN Trust territory administered by the USA, now part of the Marshall Islands.".In the introduction section of the article from [@anaïs:2016] it is stated how many tests were conducted and how big of a yield the tests had at the NTS is stated, which is also relevant to my first question with quote: "At the Nevada Test Site (NTS) northwest of Las Vegas, Nevada, 928 above- and below-ground nuclear tests occurred between 1951 and 1992. There were nearly 90 tests at the NTS in 1962 alone (NTS interviewee). Bombs of 61 and 74 kilotonnes were detonated at the NTS during the 1950s – by contrast, the bomb dropped on Hiroshima had a nuclear yield of approximately 15 kilotonnes."
+The US is shown to have conducted almost all of it's nuclear tests in Nevada Test Site or NTS as an abbreviation. Before the tests at NTS, USA conducted it's tests at various places around the pacific as given in quote: [@bergkvist:2000] "Nuclear weapon development continued in the USA and tests were conducted in 1946-62 at various atolls and islands in the Pacific Ocean. The first hydrogen bomb was tested in 1951, at Enewetak Atoll, then part of a UN Trust territory administered by the USA, now part of the Marshall Islands.".In the introduction section of the article from [@anaïs:2016] it is stated how many tests were conducted and how big of a yield the tests had at the NTS is stated, which is also relevant to my first question with quote: "At the Nevada Test Site (NTS) northwest of Las Vegas, Nevada, 928 above- and below-ground nuclear tests occurred between 1951 and 1992. There were nearly 90 tests at the NTS in 1962 alone (NTS interviewee). Bombs of 61 and 74 kilotonnes were detonated at the NTS during the 1950s – by contrast, the bomb dropped on Hiroshima had a nuclear yield of approximately 15 kilotonnes."
 
-For the second question which is "How did France conduct it's nuclear tests?", information about the French nuclear tests are less shared to the public than the USA's nuclear tests because of various reasons. These reasons include the failures of the tests, the health problems created by the test as stated in [@danielsson:1984] with quote: "Most political, church and civic leaders in French Polynesia immediately voiced strong fears that any nuclear tests made in the Tuamotus might, as the American tests did in Micronesia, adversely affect the health of the 7 000 people living there." and "By the beginning of July 1966, after three years of intense preparations, the Moruroa testing base was operational. The first bomb was placed on a barge anchored in the lagoon and detonated. The result was a catastrophe-all the water contained in the shallow reef basin was sucked up into the air and then rained down, covering all islets with heaps of irradiated fish and clams, whose slowly rotting flesh continued to stink for weeks." However, from [@willis:2006] it can be said that the testing of the French warheads were mostly conducted in the French Polynesia, especially in Moruroa and Tuamotus islands, but these were also not that effective and therefore, were not reported as after the failure of the first few tests, the types of which were "SURFACE" and "TOWER", the French converted to different types of testing types. 
+Information about the French nuclear tests are less shared to the public than the USA's nuclear tests because of various reasons. These reasons include the failures of the tests, the health problems created by the test as stated in [@danielsson:1984] with quote: "Most political, church and civic leaders in French Polynesia immediately voiced strong fears that any nuclear tests made in the Tuamotus might, as the American tests did in Micronesia, adversely affect the health of the 7 000 people living there." and "By the beginning of July 1966, after three years of intense preparations, the Moruroa testing base was operational. The first bomb was placed on a barge anchored in the lagoon and detonated. The result was a catastrophe-all the water contained in the shallow reef basin was sucked up into the air and then rained down, covering all islets with heaps of irradiated fish and clams, whose slowly rotting flesh continued to stink for weeks." However, from [@willis:2006] it can be said that the testing of the French warheads were mostly conducted in the French Polynesia, especially in Moruroa and Tuamotus islands, but these were also not that effective and therefore, were not reported as after the failure of the first few tests, the types of which were "SURFACE" and "TOWER", the French converted to different types of testing types. 
 
 
 
@@ -58,22 +60,33 @@ For the second question which is "How did France conduct it's nuclear tests?", i
 ```{r message=FALSE, warning=FALSE, echo=FALSE}
 library(tidyverse)
 library(readr)
-nuclear_explosions <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-08-20/nuclear_explosions.csv")
-n_occur <- read_csv("C:/Users/canso/Desktop/Final/final work/data/n_occur.csv")
+nuclear_explosions1 <- read_csv("C:/Users/canso/Desktop/Final/final work/data/nuclear_explosions1.csv")
+comparison1 <- read_csv("/Users/canso/Desktop/Final/final work/data/comparison1.csv")
 ```
 
-```{r results='asis',echo=FALSE, message=FALSE, warning=FALSE}
-library(xtable) 
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+library(xtable)
 library(summarytools)
 st_options(lang = "en")
 
-nuclear_explosions %>%
-    select("date_long", "year", "id_no", "country", "region", "source","latitude","longitude","depth","yield_lower","yield_upper","purpose","name","type") %>% 
-    descr(stats = c("mean", "sd", "min", "med", "max"), transpose = TRUE) %>% 
-    xtable(caption = "Summary Statistics",
-           label = "tab:summary",
-           align = c("l", "c", "c", "c", "c", "c")) %>% 
-    print(booktabs = TRUE, comment = FALSE, caption.placement = "top")
+comparison1 %>%
+   select("country","yield_upper") %>% 
+   filter(country=="FRANCE") %>% 
+   descr(stats = c("mean", "sd", "min", "med", "max"), transpose = TRUE) %>% 
+  xtable(caption = "France Nuclear Test Statistics",
+         label = "tab:summary",
+         align = c("l", "c", "c", "c", "c", "c")) %>% 
+  print(booktabs = TRUE, comment = FALSE, caption.placement = "top")
+
+comparison1 %>%
+   select("country","yield_upper") %>% 
+   filter(country=="USA") %>% 
+   descr(stats = c("mean", "sd", "min", "med", "max"), transpose = TRUE) %>% 
+  xtable(caption = "USA Nuclear Test Statistics",
+         label = "tab:summary",
+         align = c("l", "c", "c", "c", "c", "c")) %>% 
+  print(booktabs = TRUE, comment = FALSE, caption.placement = "top")
+
 ```
 
 
@@ -91,12 +104,35 @@ This section should also include different tables and plots. You can add histogr
 
 
 
-```{r plot, fig.align='center', fig.cap='An Awesome Plot'}
+```{r plot, fig.align='center', fig.cap='An'}
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-ggplot(n_occur) +
-  aes(x = Freq) +
-  geom_histogram()
+library(hrbrthemes)
+library(extrafont)
+
+
+ggplot(data=comparison1, aes(x=yield_upper, group=country, fill=country)) +
+    geom_density(adjust=170, alpha=1, ) +
+    theme_ipsum() +
+    facet_wrap(~country) +
+  ggthemes::theme_stata() +
+    theme(legend.position = "none")
+```        
+
+```{r plot1, fig.align='center', fig.cap='An'}
+```{r echo=FALSE}
+library(hrbrthemes)
+library(extrafont)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(viridis)
+
+ggplot(data=comparison1, aes(x=yield_upper,mean(x=226.34)  group=country, fill=country)) +
+    geom_density(adjust=180, alpha=0.6) +
+    ggthemes::theme_stata() +
+    theme(legend.position = "none")
 ```
+
 
 
 # Conclusion
