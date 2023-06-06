@@ -37,7 +37,7 @@ knitr::opts_chunk$set(cache = FALSE, echo = TRUE, message = FALSE, warning = FAL
 [^1]: 20080501
 
 # Introduction
-The purpose of my work is to investigate the dataset about nuclear explosions. By editing the given dataset, I removed the rows that included "NA" values and also deleted the columns that were no use to me such as "magnitude_body" and "magnitude_surface". The other variables are: date_long(Shows the complete date of the testing), year, country(Which country conducted the test), region(Where the test was conducted at), latitude, longitude, depth, yield_lower, yield_higher, purpose(Why the test was conducted for), name(Name of the detonated warhead) and type(How the nuclear test was conducted). I found this data from "https://github.com/rfordatascience/tidytuesday". With cropping the rows that had "NA" values, I have 1382 entries in total.
+The purpose of my work is to investigate the dataset about nuclear explosions. By editing the given dataset, I removed the rows that included "NA" values and also deleted the columns that were no use to me such as "magnitude_body" and "magnitude_surface". The other variables are: date_long(Shows the complete date of the testing), year, country(Which country conducted the test), region(Where the test was conducted at), latitude, longitude, depth, yield_lower, yield_higher, purpose(Why the test was conducted for), name(Name of the detonated warhead) and type(How the nuclear test was conducted). 
 
 The question I decided on is "Were the USA's nuclear tests more effective than the French nuclear tests on average?". The question is related with the 4 articles I have found and they provided me with extra information I stated in the literature review section. Also from the dataset, I can gather the needed data by using some functional codes. 
 
@@ -56,7 +56,11 @@ Information about the French nuclear tests are less shared to the public than th
 
 
 # Data
+I found this data from "https://github.com/rfordatascience/tidytuesday". The dataset was hard to find as I wanted to do a research on something that I was interested in. The main source of the dataset is SIPRI, Stockholm International Peace Research Institute, that conducts researches about anything from wars to illegal weapons trade.
 
+The main dataset is named "nuclear_explosions1". With cropping the rows that had "NA" values, I had 1382 entries in total. This was the only edit I did on the main dataset. Other than this, I had to create a subset named "comparison1" in order to conduct a test relevant to my question. This subset has 2 columns: "country" and "upper_yield". Since my question is about the effectiveness of the tests between the US and France, I deleted the rows that had the names other than USA and France. By doing this, I had 1236 entries in total inside "comparison1".
+
+The summary statistics shows the upper yield of the 2 countries seperately. Table 1 shows the statistics of France and table 2 shows the statistics of the US. Each table shows the mean, standard deviation(Given as "Std.Dev"), minimum value of the tests(Given as "Min"), median value of the tests(Given as "Median") and finally, the maximum value of the tests(Given as "Max").
 ```{r message=FALSE, warning=FALSE, echo=FALSE}
 library(tidyverse)
 library(readr)
@@ -91,7 +95,7 @@ comparison1 %>%
 
 
 # Methods and Data Analysis
-I conducted a Welch T-Test to analyse the effectiveness of the nuclear tests of the US and France. Tests of France had a mean of 103.8889 while the tests of the US had a mean of 226.3377. This can be a sign that the tests of the US were more efficient than France's nuclear tests.
+I conducted a Two Sided T-Test to analyse the effectiveness of the nuclear tests of the US and France. It can be said that the populations are not normally distributed. Running an Ansari-Bradley test gives us that the variances are equal and this allows me to conduct a Two Sided T-Test rather than a Welch T-Test. From the T-Test, it can be seen that France has a mean of 103.8889 while the tests of the US has a mean of 226.3377.
 
 ```{r ansari test, echo=FALSE, message=FALSE, warning=FALSE}
 ansari.test(yield_upper ~ country, comparison1)
@@ -102,7 +106,7 @@ ansari.test(yield_upper ~ country, comparison1)
 
 
 ```{r t test, echo=FALSE, message=FALSE, warning=FALSE}
-t.test(yield_upper ~ country, data = comparison1,var.equal = FALSE)
+t.test(yield_upper ~ country, data = comparison1,var.equal = TRUE)
 ```
 
 
@@ -111,7 +115,7 @@ t.test(yield_upper ~ country, data = comparison1,var.equal = FALSE)
 
 
 
-```{r plot7, fig.align='center', fig.cap='An'}
+```{r plot7, fig.align='center',fig.dim = c(10, 10), fig.cap='.'}
 ```{r echo=FALSE}
 library(ggridges)
 library(ggplot2)
@@ -121,10 +125,10 @@ library(forcats)
 library(repr)
 comparison1 %>%
   filter(yield_upper < 200) %>%
-  
+    
 ggplot(comparison1, mapping=aes(x = yield_upper, y = country, fill = stat(x))) +
-  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.1, gradient_lwd = 1.) +
-  scale_x_continuous(expand = expand_scale(mult = c(0, 0.25))) +
+  geom_density_ridges_gradient(scale = 1, rel_min_height = 0.1, gradient_lwd = 1.) +
+  scale_x_continuous(expand = expand_scale(mult = c(0, 0.5))) +
   scale_y_discrete(expand = expand_scale(mult = c(1, 0.25))) +
   scale_fill_viridis_c(name = "Height of the test", option = "C") +
   labs(
@@ -138,6 +142,7 @@ ggplot(comparison1, mapping=aes(x = yield_upper, y = country, fill = stat(x))) +
     
 ```
 
+This graph shows the nuclear test ratios of the US and France that has a upper yield lower than 200. It can be seen that the differance of these tests are not significant as they look close. With this, it can't be said that the tests of these countries with the filtered yield is more significant than one another. However, the graph below shows the real differance.
 
 
 
@@ -149,13 +154,20 @@ ggplot(comparison1, mapping=aes(x = yield_upper, y = country, fill = stat(x))) +
 
 
 
-```{r plot8, fig.align='center', fig.cap='An'}
+
+
+```{r plot8, fig.align='center',fig.dim = c(10, 10), fig.cap='An'}
 ```{r echo=FALSE}
  comparison1 %>% 
     GGally::ggally_box(mapping = ggplot2::aes(x = country, y = yield_upper)) +
-    labs(x = "", y = "") +
+    labs(x = "Country", y = "Upper Yield") +
     theme_minimal()
 ```
+
+This graph show the scattered tests of both countries. The black filled rectangles at the bottom of each countries shows us that many of the tests conducted by these countries were below the upper yield of 500. However, the dots on the graph shows that some of these tests were above the upper yield of 500 but different from the graph above, we can see that the US had many more tests that were above the yield of 200 and even reaching the point of 15000. Meanwhile France had only a few tests that reached barely 1000 upper yield.
+
+
+
 
 # Conclusion
 Summarize the results of your analysis in this section. Discuss to what extent your results responded to the research question you identified at the beginning and how this work could be improved in the future.
