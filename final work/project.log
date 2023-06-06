@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.21)  25 MAY 2023 17:29
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.21)  6 JUN 2023 15:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -927,20 +927,17 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 [1
 
 ] [2]
-
-LaTeX Warning: Reference `fig:plot' on page 3 undefined on input line 179.
+Overfull \hbox (172.96487pt too wide) in paragraph at lines 194--194
+[]\TU/lmtt/m/n/12 ## alternative hypothesis: true difference in means between group FRANCE and group USA is not equal to 0[] 
+ []
 
 File: project_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
 <use project_files/figure-latex/unnamed-chunk-3-1.pdf>
+[3]
 File: project_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
 <use project_files/figure-latex/unnamed-chunk-4-1.pdf>
-[3]
-File: project_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pdf)
-<use project_files/figure-latex/unnamed-chunk-5-1.pdf>
-File: project_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
-<use project_files/figure-latex/unnamed-chunk-6-1.pdf>
-[4] [5]
-Overfull \hbox (618.70508pt too wide) in paragraph at lines 201--203
+[4]
+Overfull \hbox (618.70508pt too wide) in paragraph at lines 212--214
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] []
  []
 
@@ -1030,14 +1027,11 @@ The property list \__xpg_alias contains the pairs (without outer braces):
 >  {newzealand/target}  =>  {english}
 >  {newzealand/variant}  =>  {newzealand}
 >  {newzealand/options}  =>  {variant=newzealand}.
-[6] (./project.aux
+[5] (./project.aux
 LaTeX Info: Redefining \rmfamily on input line 17.
 LaTeX Info: Redefining \sffamily on input line 17.
 LaTeX Info: Redefining \ttfamily on input line 17.
 )
-
-LaTeX Warning: There were undefined references.
-
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1045,12 +1039,12 @@ Package rerunfilecheck Info: File `project.out' has not changed.
 (rerunfilecheck)             Checksum: 0A94029B83381DF29E7F32168ECBADF3;674.
  ) 
 Here is how much of TeX's memory you used:
- 20374 strings out of 478758
- 390188 string characters out of 5848096
+ 20358 strings out of 478758
+ 389292 string characters out of 5848096
  1859476 words of memory out of 5000000
- 40140 multiletter control sequences out of 15000+600000
- 519691 words of font info for 90 fonts, out of 8000000 for 9000
+ 40124 multiletter control sequences out of 15000+600000
+ 519699 words of font info for 91 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  86i,11n,121p,1470b,476s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on project.pdf (6 pages).
+Output written on project.pdf (5 pages).

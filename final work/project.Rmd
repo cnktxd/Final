@@ -91,41 +91,25 @@ comparison1 %>%
 
 
 # Methods and Data Analysis
-In this section describe the methods that you use to achieve the purpose of the study. You should use the appropriate analysis methods (such as hypothesis tests and correlation analysis) that we covered in the class. If you want, you can also use other methods that we haven't covered. If you think some method is more suitable for the purpose of the analysis and the data set, you can use that method.
+I conducted a Welch T-Test to analyse the effectiveness of the nuclear tests of the US and France. Tests of France had a mean of 103.8889 while the tests of the US had a mean of 226.3377. This can be a sign that the tests of the US were more efficient than France's nuclear tests.
 
-For example, if you are performing regression analysis, discuss your predicted equation in this section. Write your equations and mathematical expressions using $LaTeX$.
-
-$$
-Y_t = \beta_0 + \beta_N N_t + \beta_P P_t + \beta_I I_t + \varepsilon_t
-$$
-
-This section should also include different tables and plots. You can add histograms, scatter plots (such as Figure \@ref(fig:plot)), box plots, etc. Make the necessary references to your figures as shown in the previous sentence.
-
-
-
-
-```{r plot, fig.align='center', fig.cap='An'}
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-library(hrbrthemes)
-library(extrafont)
-
-
-ggplot(data=comparison1, aes(x=yield_upper, group=country, fill=country)) +
-    geom_density(adjust=180, alpha=1, ) +
-    theme_ipsum() +
-    facet_wrap(~country) +
-  ggthemes::theme_stata() +
-    theme(legend.position = "none")
-```        
-
-```{r plot1, fig.align='center', fig.cap='An'}
-```{r echo=FALSE}
-library(viridis)
-
-ggplot(data=comparison1, aes(x=yield_upper, group=country, fill=country)) +
-    geom_density(adjust=40, alpha=0.6) +
-    ggthemes::theme_stata() 
+```{r ansari test, echo=FALSE, message=FALSE, warning=FALSE}
+ansari.test(yield_upper ~ country, comparison1)
 ```
+
+
+
+
+
+```{r t test, echo=FALSE, message=FALSE, warning=FALSE}
+t.test(yield_upper ~ country, data = comparison1,var.equal = FALSE)
+```
+
+
+
+
+
+
 
 ```{r plot7, fig.align='center', fig.cap='An'}
 ```{r echo=FALSE}
@@ -134,10 +118,13 @@ library(ggplot2)
 library(viridis)
 library(hrbrthemes)
 library(forcats)
-
-ggplot(comparison1, aes(x = yield_upper, y = country, fill = stat(x))) +
+library(repr)
+comparison1 %>%
+  filter(yield_upper < 200) %>%
+  
+ggplot(comparison1, mapping=aes(x = yield_upper, y = country, fill = stat(x))) +
   geom_density_ridges_gradient(scale = 3, rel_min_height = 0.1, gradient_lwd = 1.) +
-  scale_x_continuous(expand = c(0, 0)) +
+  scale_x_continuous(expand = expand_scale(mult = c(0, 0.25))) +
   scale_y_discrete(expand = expand_scale(mult = c(1, 0.25))) +
   scale_fill_viridis_c(name = "Height of the test", option = "C") +
   labs(
@@ -146,19 +133,28 @@ ggplot(comparison1, aes(x = yield_upper, y = country, fill = stat(x))) +
   ) +
   theme_ridges(font_size = 13, grid = TRUE) + 
   theme(axis.title.y = element_blank())
+
+
     
 ```
 
+
+
+
+
+
+
+
+
+
+
+
 ```{r plot8, fig.align='center', fig.cap='An'}
 ```{r echo=FALSE}
-library(ggridges)
-library(ggplot2)
-library(viridis)
-library(hrbrthemes)
-library(forcats)
- ggplot(comparison1, aes(x = yield_upper, y = country, fill = country)) + 
-   geom_density_ridges(scale = 4) + 
-   scale_fill_cyclical(values = c("blue", "green"))
+ comparison1 %>% 
+    GGally::ggally_box(mapping = ggplot2::aes(x = country, y = yield_upper)) +
+    labs(x = "", y = "") +
+    theme_minimal()
 ```
 
 # Conclusion
