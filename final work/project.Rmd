@@ -25,7 +25,7 @@ urlcolor: blue
 fontsize: 12pt
 biblio-style: apalike
 abstract: |
-  This research is about the nuclear explosion testings that happened between 1945 and 1998. In this research the tests of the USA and France will be discussed with regards to the questions given. The main dataset(nuclear_explosions) contains 14 variables that shows the related information about the explosions such as upper and lower yield. The second(n_occur) has 2 variables.
+  This research is about the nuclear explosion testings that happened between 1945 and 1998. In this research the tests of the USA and France will be discussed with regards to the questions given. The main dataset(nuclear_explosions) contains 14 variables that shows the related information about the explosions such as upper and lower yield. The second(comparison1) has 2 variables.
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(cache = FALSE, echo = TRUE, message = FALSE, warning = FALSE)
@@ -110,7 +110,7 @@ t.test(yield_upper ~ country, data = comparison1,var.equal = TRUE)
 ```
 
 
-
+The T-Test gives an outcome that the nuclear tests of the US were way more effective than the ones of France. 
 
 
 
@@ -126,8 +126,8 @@ library(repr)
 comparison1 %>%
   filter(yield_upper < 200) %>%
     
-ggplot(comparison1, mapping=aes(x = yield_upper, y = country, fill = stat(x))) +
-  geom_density_ridges_gradient(scale = 1, rel_min_height = 0.1, gradient_lwd = 1.) +
+ggplot(comparison1,alpha(.8), width(.4), mapping=aes(x = yield_upper, y = country, fill = stat(x))) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.1, gradient_lwd = 3.) +
   scale_x_continuous(expand = expand_scale(mult = c(0, 0.5))) +
   scale_y_discrete(expand = expand_scale(mult = c(1, 0.25))) +
   scale_fill_viridis_c(name = "Height of the test", option = "C") +
@@ -142,7 +142,8 @@ ggplot(comparison1, mapping=aes(x = yield_upper, y = country, fill = stat(x))) +
     
 ```
 
-This graph shows the nuclear test ratios of the US and France that has a upper yield lower than 200. It can be seen that the differance of these tests are not significant as they look close. With this, it can't be said that the tests of these countries with the filtered yield is more significant than one another. However, the graph below shows the real differance.
+
+This graph shows the nuclear test ratios of the US and France that has a upper yield(Abbrevatiated for thousands.) lower than 200. It can be seen that the differance of these tests are not significant as they look close. With this, it can't be said that the tests of these countries with the filtered yield is more significant than one another. However, the graph below shows the real differance.
 
 
 
@@ -158,13 +159,19 @@ This graph shows the nuclear test ratios of the US and France that has a upper y
 
 ```{r plot8, fig.align='center',fig.dim = c(10, 10), fig.cap='An'}
 ```{r echo=FALSE}
- comparison1 %>% 
-    GGally::ggally_box(mapping = ggplot2::aes(x = country, y = yield_upper)) +
-    labs(x = "Country", y = "Upper Yield") +
-    theme_minimal()
+library(ggplot2)
+library(dplyr)
+ comparison1 %>%
+     mutate(name = fct_reorder(country, yield_upper)) %>%
+     ggplot( aes(x=yield_upper, y=name)) +
+     geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) +
+     coord_flip() +
+     xlab("Upper Yield") +
+   ylab("Country")+
+     theme_bw()
 ```
 
-This graph show the scattered tests of both countries. The black filled rectangles at the bottom of each countries shows us that many of the tests conducted by these countries were below the upper yield of 500. However, the dots on the graph shows that some of these tests were above the upper yield of 500 but different from the graph above, we can see that the US had many more tests that were above the yield of 200 and even reaching the point of 15000. Meanwhile France had only a few tests that reached barely 1000 upper yield.
+This graph shows the barplotted tests of both countries. The x axis has the names of both countries and the y axis shows the upper yield of the nuclear tests of those countries. It can be clearly seen that the US's nuclear tests goes all the way up to the point above 200000. Meanwhile France's tests only reaches a point that is below 50000 and around 10000 upper yield. This is a clear indication that the tests of the US were way more effective than the ones of France's.
 
 
 
