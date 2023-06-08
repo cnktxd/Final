@@ -95,12 +95,9 @@ comparison1 %>%
 
 
 # Methods and Data Analysis
-I conducted a Two Sided T-Test to analyse the effectiveness of the nuclear tests of the US and France. It can be said that the populations are not normally distributed. From the T-Test, it can be seen that France has a mean of 103.8889 while the tests of the US has a mean of 226.3377.
-
 The graph below shows the nuclear test ratios of the US and France that has a upper yield(Abbrevatiated for thousands.) lower than 200. It can be seen that the differance of these tests are not significant as they look close. With this, it can't be said that the tests of these countries with the filtered yield is more significant than one another. However, conducting a Two-Sided T-Test gives the result needed.
 
-```{r plot7, fig.align='center',fig.dim = c(8, 8), fig.cap='.'}
-```{r echo=FALSE}
+```{r plot7, fig.align='center',fig.dim = c(4, 4), echo=FALSE}
 library(ggridges)
 library(ggplot2)
 library(viridis)
@@ -128,12 +125,18 @@ and France with the highest yield of 200'
 ```
 
 
-Conducting the Ansari-Bradley Test gives me the result that the variances are equal therefore I can conduct a Two-Sided T-Test rather than a Welch T-Test.
 
 
-```{r ansari test, echo=FALSE, message=FALSE, warning=FALSE}
-ansari.test(yield_upper ~ country, comparison1)
-```
+
+
+
+
+
+
+
+
+
+
 
 
 Before conducting the test, my hypothesis is given as below:
@@ -147,6 +150,7 @@ H0: The nuclear tests of the US were not more effective than the nuclear tests o
 t.test(yield_upper ~ country, data = comparison1,var.equal = TRUE)
 ```
 
+I conducted a Two Sided T-Test to analyse the effectiveness of the nuclear tests of the US and France. It can be said that the populations are not normally distributed. From the T-Test, it can be seen that France has a mean of 103.8889 while the tests of the US has a mean of 226.3377.
 
 The T-Test gives an outcome that the nuclear tests of the US were way more effective than the ones of France. From looking at the p value(Which is 0.1093), it is can be seen that with a 95 percent confidence interval,the null hypothesis can be accepted, meaning that I failed to reject the hypothesis. Even though the differance between two countries in the T-Test can be signifficant and gives the conclusion that the tests of the US were more effective, looking at the graphs given under can strengthen this conclusion even more. Also, the mean of the US(226.3377) shows that there is a signifficant differance between the mean of France(103.8889) which supports my null hypothesis even more. Looking at the graph below gives a clearer sign that the US's tests were more effective.
 
@@ -169,8 +173,7 @@ The T-Test gives an outcome that the nuclear tests of the US were way more effec
 
 
 
-```{r plot8, echo=FALSE, fig.align='center', fig.cap='Comparison', fig.dim=c(8, 8)}
-```{r echo=FALSE}
+```{r plot8, echo=FALSE, fig.align='center', fig.cap='Comparison', fig.dim=c(4, 4)}
 library(ggplot2)
 library(dplyr)
  comparison1 %>%
