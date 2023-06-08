@@ -25,7 +25,7 @@ urlcolor: blue
 fontsize: 12pt
 biblio-style: apalike
 abstract: |
-  This research is about the nuclear explosion testings that happened between 1945 and 1998. In this research the tests of the USA and France will be discussed with regards to the questions given. The main dataset(nuclear_explosions) contains 14 variables that shows the related information about the explosions such as upper and lower yield. The second(comparison1) has 2 variables.
+  This research is about the nuclear explosion testings that happened between 1945 and 1998. The norm of nuclear warfare and nuclear testing is important in politics as these tests were used as a show of power. In this research the tests of the USA and France will be discussed with regards to the question "Were the USA's nuclear tests more effective than the French nuclear tests on average?". The main method used in this research is a Two-Sided T-Test, the reason why I used this method is in order to conclude an understandable comparison for the 2 countries, the T-Test was the most efficient way of doing so. I found that the USA's nuclear tests were more effective even by looking at the graphs. The T-Test also gave a hint at this conclusion as the differance was somewhat significant in a statistical way.
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(cache = FALSE, echo = TRUE, message = FALSE, warning = FALSE)
@@ -95,27 +95,11 @@ comparison1 %>%
 
 
 # Methods and Data Analysis
-I conducted a Two Sided T-Test to analyse the effectiveness of the nuclear tests of the US and France. It can be said that the populations are not normally distributed. Running an Ansari-Bradley test gives us that the variances are equal and this allows me to conduct a Two Sided T-Test rather than a Welch T-Test. From the T-Test, it can be seen that France has a mean of 103.8889 while the tests of the US has a mean of 226.3377.
+I conducted a Two Sided T-Test to analyse the effectiveness of the nuclear tests of the US and France. It can be said that the populations are not normally distributed. From the T-Test, it can be seen that France has a mean of 103.8889 while the tests of the US has a mean of 226.3377.
 
-```{r ansari test, echo=FALSE, message=FALSE, warning=FALSE}
-ansari.test(yield_upper ~ country, comparison1)
-```
+The graph below shows the nuclear test ratios of the US and France that has a upper yield(Abbrevatiated for thousands.) lower than 200. It can be seen that the differance of these tests are not significant as they look close. With this, it can't be said that the tests of these countries with the filtered yield is more significant than one another. However, conducting a Two-Sided T-Test gives the result needed.
 
-
-
-
-
-```{r t test, echo=FALSE, message=FALSE, warning=FALSE}
-t.test(yield_upper ~ country, data = comparison1,var.equal = TRUE)
-```
-
-
-The T-Test gives an outcome that the nuclear tests of the US were way more effective than the ones of France. 
-
-
-
-
-```{r plot7, fig.align='center',fig.dim = c(10, 10), fig.cap='.'}
+```{r plot7, fig.align='center',fig.dim = c(8, 8), fig.cap='.'}
 ```{r echo=FALSE}
 library(ggridges)
 library(ggplot2)
@@ -133,7 +117,8 @@ ggplot(comparison1,alpha(.8), width(.4), mapping=aes(x = yield_upper, y = countr
   scale_fill_viridis_c(name = "Height of the test", option = "C") +
   labs(
     title = 'Nuclear Explosion Tests',
-    subtitle = 'Comparison of French and American tests'
+    subtitle = 'Comparison of the tests between the US
+and France with the highest yield of 200'
   ) +
   theme_ridges(font_size = 13, grid = TRUE) + 
   theme(axis.title.y = element_blank())
@@ -143,7 +128,27 @@ ggplot(comparison1,alpha(.8), width(.4), mapping=aes(x = yield_upper, y = countr
 ```
 
 
-This graph shows the nuclear test ratios of the US and France that has a upper yield(Abbrevatiated for thousands.) lower than 200. It can be seen that the differance of these tests are not significant as they look close. With this, it can't be said that the tests of these countries with the filtered yield is more significant than one another. However, the graph below shows the real differance.
+Conducting the Ansari-Bradley Test gives me the result that the variances are equal therefore I can conduct a Two-Sided T-Test rather than a Welch T-Test.
+
+
+```{r ansari test, echo=FALSE, message=FALSE, warning=FALSE}
+ansari.test(yield_upper ~ country, comparison1)
+```
+
+
+Before conducting the test, my hypothesis is given as below:
+
+H1: The nuclear tests of the US were more effective than the nuclear tests of France.
+
+H0: The nuclear tests of the US were not more effective than the nuclear tests of France.
+
+
+```{r t test, echo=FALSE, message=FALSE, warning=FALSE}
+t.test(yield_upper ~ country, data = comparison1,var.equal = TRUE)
+```
+
+
+The T-Test gives an outcome that the nuclear tests of the US were way more effective than the ones of France. From looking at the p value(Which is 0.1093), it is can be seen that with a 95 percent confidence interval,the null hypothesis can be accepted, meaning that I failed to reject the hypothesis. Even though the differance between two countries in the T-Test can be signifficant and gives the conclusion that the tests of the US were more effective, looking at the graphs given under can strengthen this conclusion even more. Also, the mean of the US(226.3377) shows that there is a signifficant differance between the mean of France(103.8889) which supports my null hypothesis even more. Looking at the graph below gives a clearer sign that the US's tests were more effective.
 
 
 
@@ -157,7 +162,14 @@ This graph shows the nuclear test ratios of the US and France that has a upper y
 
 
 
-```{r plot8, fig.align='center',fig.dim = c(10, 10), fig.cap='An'}
+
+
+
+
+
+
+
+```{r plot8, echo=FALSE, fig.align='center', fig.cap='Comparison', fig.dim=c(8, 8)}
 ```{r echo=FALSE}
 library(ggplot2)
 library(dplyr)
@@ -168,10 +180,15 @@ library(dplyr)
      coord_flip() +
      xlab("Upper Yield") +
    ylab("Country")+
+   labs(
+    title = 'Nuclear Explosion Tests',
+    subtitle = 'A complete comparison of nuclear 
+tests between France and the US'
+  ) +
      theme_bw()
 ```
 
-This graph shows the barplotted tests of both countries. The x axis has the names of both countries and the y axis shows the upper yield of the nuclear tests of those countries. It can be clearly seen that the US's nuclear tests goes all the way up to the point above 200000. Meanwhile France's tests only reaches a point that is below 50000 and around 10000 upper yield. This is a clear indication that the tests of the US were way more effective than the ones of France's.
+This graph shows the barplotted tests of both countries. The x axis has the names of both countries and the y axis shows the upper yield of the nuclear tests of those countries. It can be clearly seen that the US's nuclear tests goes all the way up to the point above 200000. Meanwhile France's tests only reaches a point that is below 50000 and around 10000 upper yield. This is also a clear indication that the tests of the US were way more effective than the ones of France's.
 
 
 

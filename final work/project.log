@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.6)  8 JUN 2023 13:22
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.6)  8 JUN 2023 15:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -928,17 +928,18 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 5.99936pt on input line 143.
 [2]
-Overfull \hbox (172.96487pt too wide) in paragraph at lines 200--200
+File: project_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
+<use project_files/figure-latex/unnamed-chunk-3-1.pdf>
+[3]
+Overfull \hbox (172.96487pt too wide) in paragraph at lines 212--212
 []\TU/lmtt/m/n/12 ## alternative hypothesis: true difference in means between group FRANCE and group USA is not equal to 0[] 
  []
 
-[3]
-File: project_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
-<use project_files/figure-latex/unnamed-chunk-3-1.pdf>
+[4]
 File: project_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
 <use project_files/figure-latex/unnamed-chunk-4-1.pdf>
-[4] [5]
-Overfull \hbox (618.70508pt too wide) in paragraph at lines 224--226
+[5]
+Overfull \hbox (618.70508pt too wide) in paragraph at lines 232--234
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] []
  []
 
@@ -1042,7 +1043,7 @@ Package rerunfilecheck Info: File `project.out' has not changed.
 Here is how much of TeX's memory you used:
  20353 strings out of 478700
  389094 string characters out of 5847642
- 1860410 words of memory out of 5000000
+ 1861410 words of memory out of 5000000
  40180 multiletter control sequences out of 15000+600000
  519699 words of font info for 91 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
