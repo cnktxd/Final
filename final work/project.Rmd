@@ -173,7 +173,7 @@ The T-Test gives an outcome that the nuclear tests of the US were way more effec
 
 
 
-```{r plot8, echo=FALSE, fig.align='center', fig.cap='Comparison', fig.dim=c(4, 4)}
+```{r plot8, echo=FALSE, fig.align='center', fig.cap='', fig.dim=c(4, 4)}
 library(ggplot2)
 library(dplyr)
  comparison1 %>%
@@ -197,7 +197,9 @@ This graph shows the barplotted tests of both countries. The x axis has the name
 
 
 # Conclusion
-Summarize the results of your analysis in this section. Discuss to what extent your results responded to the research question you identified at the beginning and how this work could be improved in the future.
+The final results of my research is that the nuclear tests of the US were way more effective than the nuclear tests of France. After the T-Test, this conclusion got more obvious but adding the graphs made the conclusion even stronger. My research question was signifficant in this research because I was able to conduct a relevant T-Test and also create the graphs that were needed to visualise this conclusion.Also, the literature I found were somewhat on point about the tests of these nuclear explosions. Even though the articles I found were about the initial point of nuclear tests, they also gave a hint about the secret nuclear tests of countries like France, which was the second country of my selection, and this allowed me to get better information on those tests. 
+
+To improve this research, I believe I could've decided on what kind of data analysis I was going to do earlier. This way, I wouldn't have had to change my research question in order to make it available for conducting a T-Test. Another point is that the literature I found(articles, reports etc.) could have given a better insight on the nuclear tests of world countries since most of the articles I found were over 20 years old. Also, these articles and report gave mostly declassified information about these tests. So in order to conduct a better research on this topic, countries should make the reports on these tests more open to the public I believe. 
 
 
 
