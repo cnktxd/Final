@@ -1,11 +1,11 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.6)  9 JUN 2023 14:49
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.9)  9 JUN 2023 22:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **project.tex
 (./project.tex
 LaTeX2e <2022-11-01> patch level 1
-L3 programming layer <2023-05-22> (c:/Users/canso/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
+L3 programming layer <2023-06-05> (c:/Users/canso/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
 (c:/Users/canso/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size12.clo
 File: size12.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
@@ -130,7 +130,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 ) (c:/Users/canso/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ) (c:/Users/canso/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math.sty (c:/Users/canso/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2023-05-22 L3 programming layer (loader) 
+Package: expl3 2023-06-05 L3 programming layer (loader) 
 (c:/Users/canso/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
 File: l3backend-xetex.def 2023-04-19 L3 backend support: XeTeX
 \g__graphics_track_int=\count267
@@ -928,18 +928,17 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 5.99936pt on input line 143.
 [2]
-File: project_files/figure-latex/plot7-1.pdf Graphic file (type pdf)
-<use project_files/figure-latex/plot7-1.pdf>
-[3]
-Overfull \hbox (172.96487pt too wide) in paragraph at lines 199--199
+Overfull \hbox (172.96487pt too wide) in paragraph at lines 195--195
 []\TU/lmtt/m/n/12 ## alternative hypothesis: true difference in means between group FRANCE and group USA is not equal to 0[] 
  []
 
-[4]
-File: project_files/figure-latex/plot8-1.pdf Graphic file (type pdf)
-<use project_files/figure-latex/plot8-1.pdf>
-[5] [6]
-Overfull \hbox (618.70508pt too wide) in paragraph at lines 229--231
+[3]
+File: project_files/figure-latex/plot1-1.pdf Graphic file (type pdf)
+<use project_files/figure-latex/plot1-1.pdf>
+File: project_files/figure-latex/plot2-1.pdf Graphic file (type pdf)
+<use project_files/figure-latex/plot2-1.pdf>
+[4] [5]
+Overfull \hbox (618.70508pt too wide) in paragraph at lines 237--239
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] []
  []
 
@@ -1029,7 +1028,7 @@ The property list \__xpg_alias contains the pairs (without outer braces):
 >  {newzealand/target}  =>  {english}
 >  {newzealand/variant}  =>  {newzealand}
 >  {newzealand/options}  =>  {variant=newzealand}.
-[7] (./project.aux
+[6] (./project.aux
 LaTeX Info: Redefining \rmfamily on input line 17.
 LaTeX Info: Redefining \sffamily on input line 17.
 LaTeX Info: Redefining \ttfamily on input line 17.
@@ -1041,12 +1040,12 @@ Package rerunfilecheck Info: File `project.out' has not changed.
 (rerunfilecheck)             Checksum: 0A94029B83381DF29E7F32168ECBADF3;674.
  ) 
 Here is how much of TeX's memory you used:
- 20358 strings out of 478700
- 389092 string characters out of 5847642
- 1862410 words of memory out of 5000000
- 40185 multiletter control sequences out of 15000+600000
- 519699 words of font info for 91 fonts, out of 8000000 for 9000
+ 20356 strings out of 478642
+ 389074 string characters out of 5846475
+ 1862382 words of memory out of 5000000
+ 40241 multiletter control sequences out of 15000+600000
+ 520799 words of font info for 93 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  86i,11n,121p,1470b,476s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on project.pdf (7 pages).
+Output written on project.pdf (6 pages).
