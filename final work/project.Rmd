@@ -25,7 +25,7 @@ urlcolor: blue
 fontsize: 12pt
 biblio-style: apalike
 abstract: |
-  This research is about the nuclear explosion testings that happened between 1945 and 1998. The norm of nuclear warfare and nuclear testing is important in politics as these tests were used as a show of power. In this research the tests of the USA and France will be discussed with regards to the question "Were the USA's nuclear tests more effective than the French nuclear tests on average?". The main method used in this research is a Two-Sided T-Test, the reason why I used this method is in order to conclude an understandable comparison for the 2 countries, the T-Test was the most efficient way of doing so. I found that the USA's nuclear tests were more effective even by looking at the graphs. The T-Test also gave a hint at this conclusion as the differance was somewhat significant in a statistical way.
+  This research is about the nuclear explosion tests that happened between 1945 and 1998. The norm of nuclear warfare and nuclear testing is important in politics as these tests were used as a show of power. In this research the tests of the USA and France will be discussed with regards to the question "Were the USA's nuclear tests more effective than the French nuclear tests on average?". This effectiveness will be compared with the upper yields of these tests. The main method used in this research is a Two-Sided T-Test, the reason why I used this method is in order to conclude an understandable comparison for the 2 countries, the T-Test was the most efficient way of doing so. I found that the USA's nuclear tests were more effective even by looking at the graphs. The T-Test also gave a hint at this conclusion as the differance was somewhat significant in a statistical way.
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(cache = FALSE, echo = TRUE, message = FALSE, warning = FALSE)
@@ -56,7 +56,7 @@ Information about the French nuclear tests are less shared to the public than th
 
 
 # Data
-I found this data from "https://github.com/rfordatascience/tidytuesday". The dataset was hard to find as I wanted to do a research on something that I was interested in. The main source of the dataset is SIPRI, Stockholm International Peace Research Institute, that conducts researches about anything from wars to illegal weapons trade.
+I found this data from "https://github.com/rfordatascience/tidytuesday". The dataset was hard to find as I wanted to conduct a research on some topic that I was interested in. The main source of the dataset is SIPRI, Stockholm International Peace Research Institute, that conducts researches about anything from wars to illegal weapons trade.
 
 The main dataset is named "nuclear_explosions1". With cropping the rows that had "NA" values, I had 1382 entries in total. This was the only edit I did on the main dataset. Other than this, I had to create a subset named "comparison1" in order to conduct a test relevant to my question. This subset has 2 columns: "country" and "upper_yield". Since my question is about the effectiveness of the tests between the US and France, I deleted the rows that had the names other than USA and France. By doing this, I had 1236 entries in total inside "comparison1".
 
@@ -95,7 +95,7 @@ comparison1 %>%
 
 
 # Methods and Data Analysis
-The graph below shows the nuclear test ratios of the US and France that has a upper yield(Abbrevatiated for thousands.) lower than 200. It can be seen that the differance of these tests are not significant as they look close. With this, it can't be said that the tests of these countries with the filtered yield is more significant than one another. However, conducting a Two-Sided T-Test gives the result needed.
+The graph below shows the nuclear test ratios of the US and France that has an upper yield (Abbrevatiated for a thousand as hundreds.) lower than 200. It can be seen that the differance of these tests are not significant as they look close. With this, it can't be said that the tests of these countries with the filtered yield is more significant than one another. However, conducting a Two-Sided T-Test gives the result needed.
 
 ```{r plot7, fig.align='center',fig.dim = c(4, 4), echo=FALSE}
 library(ggridges)
@@ -152,7 +152,7 @@ t.test(yield_upper ~ country, data = comparison1,var.equal = TRUE)
 
 I conducted a Two Sided T-Test to analyse the effectiveness of the nuclear tests of the US and France. It can be said that the populations are not normally distributed. From the T-Test, it can be seen that France has a mean of 103.8889 while the tests of the US has a mean of 226.3377.
 
-The T-Test gives an outcome that the nuclear tests of the US were way more effective than the ones of France. From looking at the p value(Which is 0.1093), it is can be seen that with a 95 percent confidence interval,the null hypothesis can be accepted, meaning that I failed to reject the hypothesis. Even though the differance between two countries in the T-Test can be signifficant and gives the conclusion that the tests of the US were more effective, looking at the graphs given under can strengthen this conclusion even more. Also, the mean of the US(226.3377) shows that there is a signifficant differance between the mean of France(103.8889) which supports my null hypothesis even more. Looking at the graph below gives a clearer sign that the US's tests were more effective.
+The T-Test gives an outcome that the nuclear tests of the US were way more effective than the ones of France. From looking at the p value(Which is 0.1093), it can be seen that with a 95 percent confidence interval,the null hypothesis can be accepted, meaning that I failed to reject the hypothesis. Even though the differance between two countries in the T-Test can be signifficant and gives the conclusion that the tests of the US were more effective, looking at the graph given under can strengthen this conclusion even more. Also, the mean of the US(226.3377) shows that there is a signifficant differance between the mean of France(103.8889) which supports my null hypothesis even more. Looking at the graph below gives a clearer sign that the US's tests were more effective.
 
 
 
@@ -191,13 +191,13 @@ tests between France and the US'
      theme_bw()
 ```
 
-This graph shows the barplotted tests of both countries. The x axis has the names of both countries and the y axis shows the upper yield of the nuclear tests of those countries. It can be clearly seen that the US's nuclear tests goes all the way up to the point above 200000. Meanwhile France's tests only reaches a point that is below 50000 and around 10000 upper yield. This is also a clear indication that the tests of the US were way more effective than the ones of France's.
+This graph shows the barplotted tests of both countries. The x axis has the names of both countries and the y axis shows the upper yield of the nuclear tests of those countries. It can be clearly seen that the US's nuclear tests goes all the way up to the point above 200000. Meanwhile France's tests only reach a point that is below 50000 and around 10000 upper yield. This is also a clear indication that the tests of the US were way more effective than the ones of France's.
 
 
 
 
 # Conclusion
-The final results of my research is that the nuclear tests of the US were way more effective than the nuclear tests of France. After the T-Test, this conclusion got more obvious but adding the graphs made the conclusion even stronger. My research question was signifficant in this research because I was able to conduct a relevant T-Test and also create the graphs that were needed to visualise this conclusion.Also, the literature I found were somewhat on point about the tests of these nuclear explosions. Even though the articles I found were about the initial point of nuclear tests, they also gave a hint about the secret nuclear tests of countries like France, which was the second country of my selection, and this allowed me to get better information on those tests. 
+The final result of my research is that the nuclear tests of the US were way more effective than the nuclear tests of France. After the T-Test, this conclusion got more obvious but adding the graphs made the conclusion even clearer. My research question was signifficant in this research because I was able to conduct a relevant T-Test and also create the graphs that were needed to visualise this conclusion. Also, the literature I found were somewhat on point about the tests of these nuclear explosions. Even though the articles I found were about the initial point of nuclear testing, they also gave a hint about the secret nuclear tests of countries like France, which was the second country of my selection, and this allowed me to get better information on those tests. 
 
 To improve this research, I believe I could've decided on what kind of data analysis I was going to do earlier. This way, I wouldn't have had to change my research question in order to make it available for conducting a T-Test. Another point is that the literature I found(articles, reports etc.) could have given a better insight on the nuclear tests of world countries since most of the articles I found were over 20 years old. Also, these articles and report gave mostly declassified information about these tests. So in order to conduct a better research on this topic, countries should make the reports on these tests more open to the public I believe. 
 
