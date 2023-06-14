@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.9)  14 JUN 2023 13:21
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.9)  14 JUN 2023 13:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -927,18 +927,19 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 8.3991pt on input line 143.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 5.99936pt on input line 143.
-[2]
-Overfull \hbox (172.96487pt too wide) in paragraph at lines 195--195
+[2] [3]
+Overfull \hbox (172.96487pt too wide) in paragraph at lines 216--216
 []\TU/lmtt/m/n/12 ## alternative hypothesis: true difference in means between group FRANCE and group USA is not equal to 0[] 
  []
 
-[3]
+[4]
 File: project_files/figure-latex/plot1-1.pdf Graphic file (type pdf)
 <use project_files/figure-latex/plot1-1.pdf>
+[5]
 File: project_files/figure-latex/plot2-1.pdf Graphic file (type pdf)
 <use project_files/figure-latex/plot2-1.pdf>
-[4] [5] [6]
-Overfull \hbox (630.70508pt too wide) in paragraph at lines 258--260
+[6] [7] [8]
+Overfull \hbox (630.70508pt too wide) in paragraph at lines 284--286
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] []
  []
 
@@ -1028,7 +1029,7 @@ The property list \__xpg_alias contains the pairs (without outer braces):
 >  {newzealand/target}  =>  {english}
 >  {newzealand/variant}  =>  {newzealand}
 >  {newzealand/options}  =>  {variant=newzealand}.
-[7] (./project.aux
+[9] (./project.aux
 LaTeX Info: Redefining \rmfamily on input line 17.
 LaTeX Info: Redefining \sffamily on input line 17.
 LaTeX Info: Redefining \ttfamily on input line 17.
@@ -1048,4 +1049,4 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  86i,11n,121p,1470b,488s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on project.pdf (7 pages).
+Output written on project.pdf (9 pages).

@@ -97,7 +97,26 @@ comparison1 %>%
 
 
 # Methods and Data Analysis
-Before conducting the test, my hypothesis is given as below:
+I need to conduct a T-Test since my question is related to the average results of two different country's nuclear tests so I need to conduct a Two-Sided T-Test. Before conducting this test, I need to find out whether or not the variances are equal. This is needed because if the variances are equal, I can conduct a standard Two-Sided T-Test and if they are not, I have to conduct a Welch Two-Sided T-Test.
+
+In order to find out if the variances between the two variables are equal or not, I have to conduct an Ansari-Bradley Test.
+
+
+My Hypothesis For Ansari-Bradley Test:
+
+H0: Variances are equal to 1.
+
+H1: Variances are not equal to 1.
+
+```{r test45, echo=FALSE, message=FALSE, warning=FALSE}
+ansari.test(yield_upper ~ country, comparison1)
+```
+
+From the Ansari-Bradley Test, I failed to reject the null hypothesis that the variances are equal to 1. With this, I can safely conduct a Two-Sided T-Test without a problem.
+
+
+
+My Hypothesis For the Two-Sided T-Test:
 
 H1: The nuclear tests of the US were more effective than the nuclear tests of France.
 
@@ -117,7 +136,7 @@ The second and the final reason is the difference between two countries in the T
 
 Looking at the graph below gives a clearer sign that the US's tests were more effective.
 
-
+\newpage
 First graph \@ref(fig:plot1) shows the nuclear test ratios of the US and France that has an upper yield (Abbrevatiated for a thousand as hundreds.) lower than 200. It can be seen that the difference of these tests are not significant as they look close. With this, it can't be said that the tests of these countries with the filtered yield is more significant than one another. However, the Two-Sided T-Test gives the result needed.
 
 ```{r plot1, fig.align='center',fig.dim = c(4, 3), echo=FALSE, fig.cap="Nuclear Explosion Tests"}
@@ -156,32 +175,7 @@ and France with the highest yield of 200'
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\newpage
 ```{r plot2, echo=FALSE, fig.align='center', fig.cap='Complete Comparison', fig.dim=c(3, 3)}
 library(ggplot2)
 library(dplyr)
@@ -204,7 +198,7 @@ tests between France and the US'
 
 
 
-
+\newpage
 # Conclusion
 The final result of my research is that the nuclear tests of the US were way more effective than the nuclear tests of France. After the T-Test, this conclusion got more obvious but adding the graphs made the conclusion even clearer. My research question was significant in this research because I was able to conduct a relevant T-Test and also create the graphs that were needed to visualize this conclusion. Also, the literature I found were somewhat on point about the tests of these nuclear explosions. Even though the articles I found were about the initial point of nuclear testing, they also gave a hint about the secret nuclear tests of countries like France, which was the second country of my selection, and this allowed me to get better information on those tests. 
 
