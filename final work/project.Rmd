@@ -131,13 +131,13 @@ This T Test allows me to analyse the effectiveness of the nuclear tests of the U
 
 The T-Test gives an outcome that the nuclear tests of the US were way more effective than the ones of France. The first reason for this is that the p value(Which is 0.1093),is within the area of acceptance, since the confidence interval is 95 percent. With this, the null hypothesis can be accepted, meaning that I failed to reject the hypothesis. 
 
-The second and the final reason is the difference between two countries in the T-Test is significant and gives the conclusion that the tests of the US were more effective, since the difference between the two means of the US and France are quite large and the difference is in the favor of the US. 
+The second and the final reason is the difference between the means of two countries in the T-Test is significant and gives the conclusion that the tests of the US were more effective, since the difference between the two means of the US and France are quite large and the difference is in the favor of the US. 
 
 
 Looking at the graph below gives a clearer sign that the US's tests were more effective.
 
 \newpage
-First graph \@ref(fig:plot1) shows the nuclear test ratios of the US and France that has an upper yield (Abbrevatiated for a thousand as hundreds.) lower than 200. It can be seen that the difference of these tests are not significant as they look close. With this, it can't be said that the tests of these countries with the filtered yield is more significant than one another. However, the Two-Sided T-Test gives the result needed.
+First graph \@ref(fig:plot1) shows the nuclear test ratios of the US and France that has an upper yield (Abbrevatiated for a thousand as hundreds.) lower than 200. It can be seen that the difference of these tests are not significant as they look close. With this, it can't be said that the tests of these countries with the filtered yield is more significant than one another. However, the graph below gives the result needed.
 
 ```{r plot1, fig.align='center',fig.dim = c(4, 3), echo=FALSE, fig.cap="Nuclear Explosion Tests"}
 library(ggridges)
@@ -194,7 +194,9 @@ tests between France and the US'
      theme_bw()
 ```
 
-\@ref(fig:plot2) shows the bar plotted tests of both countries. The x axis has the names of both countries and the y axis shows the upper yield of the nuclear tests of those countries. It can be clearly seen that the US's nuclear tests goes all the way up to the point above 200000. Meanwhile France's tests only reach a point that is below 50000 and around 10000 upper yield. This is also a clear indication that the tests of the US were way more effective than the ones of France's.
+\@ref(fig:plot2) shows the bar plotted tests of both countries. The x axis has the names of both countries and the y axis shows the upper yield of the nuclear tests of those countries. It can be clearly seen that the US's nuclear tests goes all the way up to the point above 200000. Meanwhile French tests only reach a point that is below 50000 and around 10000 upper yield. This is also a clear indication that the tests of the US were way more effective than the ones of France's.
+
+Another point that we can understand from this graph is that the US conducted way more nuclear tests in all compared to France. From the dataset "comparison1", it can be seen that France only conducted 190 nuclear tests in total whereas the US conducted 1046 nuclear tests. From this, it can be said that even if the upper yields of nuclear tests weren't known, nuclear tests of the US would have been more effective just because of the number of tests they conducted.
 
 
 
