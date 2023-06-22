@@ -60,14 +60,6 @@ geom_point() +
 
 # -------------------------------------------------------------------------- ###
 # Question 3f ----
-diceroll <- function() {
-first <- sample(1:6, 1, replace = TRUE)
-second <- sample(1:6, 1, replace = TRUE)
-cat("Dice 1:", dice1, "\n")
-cat("Dice 2:", dice2, "\n")
-return(dice1 + dice2)
-}
-result <- diceroll()
 # -------------------------------------------------------------------------- ###
 
 
