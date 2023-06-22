@@ -30,9 +30,7 @@ biblio-style: apalike
 abstract: |
   This research is about the nuclear explosion tests that happened between 1945 and 1998. The norm of nuclear warfare and nuclear testing is important in politics as these tests were used as a show of power. In this research the tests of the USA and France will be discussed with regards to the question "Were the USA's nuclear tests more effective than the French nuclear tests on average?". This effectiveness will be compared with the upper yields of these tests. The main method used in this research is a Two-Sided T-Test, the reason why I used this method is in order to conclude an understandable comparison for the 2 countries, the T-Test was the most efficient way of doing so. I found that the USA's nuclear tests were more effective even by looking at the graphs. The T-Test also gave a hint at this conclusion as the differance was somewhat significant in a statistical way.
 ---
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache = FALSE, echo = TRUE, message = FALSE, warning = FALSE)
-```
+
 
 <!-- ======================================================================= -->
 <!-- ============================== FOOTNOTES ============================== -->
@@ -64,36 +62,37 @@ I found this data from "https://github.com/rfordatascience/tidytuesday". The dat
 The main dataset is named "nuclear_explosions1". With cropping the rows that had "NA" values, I had 1382 entries in total. This was the only edit I did on the main dataset. Other than this, I had to create a subset named "comparison1" in order to conduct a test relevant to my question. This subset has 2 columns: "country" and "upper_yield". Since my question is about the effectiveness of the tests between the US and France, I deleted the rows that had the names other than USA and France. By doing this, I had 1236 entries in total inside "comparison1".
 
 The summary statistics shows the upper yield of the 2 countries seperately. Table 1 shows the statistics of France and table 2 shows the statistics of the US. Each table shows the mean, standard deviation(Given as "Std.Dev"), minimum value of the tests(Given as "Min"), median value of the tests(Given as "Median") and finally, the maximum value of the tests(Given as "Max").
-```{r message=FALSE, warning=FALSE, echo=FALSE}
-library(tidyverse)
-library(readr)
-nuclear_explosions1 <- read_csv("./data/nuclear_explosions1.csv")
-comparison1 <- read_csv("./data/comparison1.csv")
+
+
+
+```
+## \begin{table}[ht]
+## \centering
+## \caption{France Nuclear Test Statistics} 
+## \label{tab:summary}
+## \begin{tabular}{lccccc}
+##   \toprule
+##  & Mean & Std.Dev & Min & Median & Max \\ 
+##   \midrule
+## yield\_upper & 103.89 & 213.23 & 0.00 & 20.00 & 1000.00 \\ 
+##    \bottomrule
+## \end{tabular}
+## \end{table}
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Statistics Tables"}
-library(xtable)
-library(summarytools)
-st_options(lang = "en")
-
-comparison1 %>%
-   select("country","yield_upper") %>% 
-   filter(country=="FRANCE") %>% 
-   descr(stats = c("mean", "sd", "min", "med", "max"), transpose = TRUE) %>% 
-  xtable(caption = "France Nuclear Test Statistics",
-         label = "tab:summary",
-         align = c("l", "c", "c", "c", "c", "c")) %>% 
-  print(booktabs = TRUE, comment = FALSE, caption.placement = "top")
-
-comparison1 %>%
-   select("country","yield_upper") %>% 
-   filter(country=="USA") %>% 
-   descr(stats = c("mean", "sd", "min", "med", "max"), transpose = TRUE) %>% 
-  xtable(caption = "USA Nuclear Test Statistics",
-         label = "tab:summary",
-         align = c("l", "c", "c", "c", "c", "c")) %>% 
-  print(booktabs = TRUE, comment = FALSE, caption.placement = "top")
-
+```
+## \begin{table}[ht]
+## \centering
+## \caption{USA Nuclear Test Statistics} 
+## \label{tab:summary}
+## \begin{tabular}{lccccc}
+##   \toprule
+##  & Mean & Std.Dev & Min & Median & Max \\ 
+##   \midrule
+## yield\_upper & 226.34 & 1094.94 & 0.00 & 20.00 & 15000.00 \\ 
+##    \bottomrule
+## \end{tabular}
+## \end{table}
 ```
 
 
@@ -109,8 +108,14 @@ H0: Variances are equal to 1.
 
 H1: Variances are not equal to 1.
 
-```{r test45, echo=FALSE, message=FALSE, warning=FALSE}
-ansari.test(yield_upper ~ country, comparison1)
+
+```
+## 
+## 	Ansari-Bradley test
+## 
+## data:  yield_upper by country
+## AB = 62861, p-value = 0.7139
+## alternative hypothesis: true ratio of scales is not equal to 1
 ```
 
 The standard confidence interval of the Ansari-Bradley Test is 95 percent and the p value that came out from the test is 0.7139. With this, I failed to reject the null hypothesis that the variances are equal to 1 since the p-value is within the are of acceptance.
@@ -126,8 +131,19 @@ H1: The nuclear tests of the US were more effective than the nuclear tests of Fr
 H0: The nuclear tests of the US were not more effective than the nuclear tests of France.
 
 
-```{r test, echo=FALSE, message=FALSE, warning=FALSE}
-t.test(yield_upper ~ country, data = comparison1,var.equal = TRUE)
+
+```
+## 
+## 	Two Sample t-test
+## 
+## data:  yield_upper by country
+## t = -1.6024, df = 1234, p-value = 0.1093
+## alternative hypothesis: true difference in means between group FRANCE and group USA is not equal to 0
+## 95 percent confidence interval:
+##  -272.37008   27.47237
+## sample estimates:
+## mean in group FRANCE    mean in group USA 
+##             103.8889             226.3377
 ```
 
 This T Test allows me to analyse the effectiveness of the nuclear tests of the US and France. It can be said that the populations are not normally distributed. From the T-Test, it can be seen that France has a mean of 103.8889 while the tests of the US has a mean of 226.3377.
@@ -142,32 +158,14 @@ Looking at the graphs below gives a clearer sign that the US's tests were more e
 \newpage
 First graph \@ref(fig:plot1) shows the nuclear test ratios of the US and France that has an upper yield (Abbrevatiated for a thousand as hundreds.) lower than 200. It can be seen that the difference of these tests are not significant as they look close. With this, it can't be said that the tests of these countries with the filtered yield is more significant than one another. However, the graph below gives the result needed.
 
-```{r plot1, fig.align='center',fig.dim = c(4, 3), echo=FALSE, fig.cap="Nuclear Explosion Tests"}
-library(ggridges)
-library(ggplot2)
-library(viridis)
-library(hrbrthemes)
-library(forcats)
-library(repr)
-comparison1 %>%
-  filter(yield_upper < 200) %>%
-    
-ggplot(comparison1,alpha(.8), width(.4), mapping=aes(x = yield_upper, y = country, fill = stat(x))) +
-  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.1, gradient_lwd = 3.) +
-  scale_x_continuous(expand = expand_scale(mult = c(0, 0.5))) +
-  scale_y_discrete(expand = expand_scale(mult = c(1, 0.25))) +
-  scale_fill_viridis_c(name = "Height of the test", option = "C") +
-  labs(
-    title = 'Nuclear Explosion Tests',
-    subtitle = 'Comparison of the tests between the US
-and France with the highest yield of 200'
-  ) +
-  theme_ridges(font_size = 13, grid = TRUE) + 
-  theme(axis.title.y = element_blank())
+\begin{figure}
 
+{\centering \includegraphics{project_files/figure-latex/plot1-1} 
 
-    
-```
+}
+
+\caption{Nuclear Explosion Tests}(\#fig:plot1)
+\end{figure}
 
 
 
@@ -179,23 +177,14 @@ and France with the highest yield of 200'
 
 
 \newpage
-```{r plot2, echo=FALSE, fig.align='center', fig.cap='Complete Comparison', fig.dim=c(3, 3)}
-library(ggplot2)
-library(dplyr)
- comparison1 %>%
-     mutate(name = fct_reorder(country, yield_upper)) %>%
-     ggplot( aes(x=yield_upper, y=name)) +
-     geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) +
-     coord_flip() +
-     xlab("Upper Yield") +
-   ylab("Country")+
-   labs(
-    title = 'Nuclear Explosion Tests',
-    subtitle = 'A full comparison of nuclear 
-tests between France and the US'
-  ) +
-     theme_bw()
-```
+\begin{figure}
+
+{\centering \includegraphics{project_files/figure-latex/plot2-1} 
+
+}
+
+\caption{Complete Comparison}(\#fig:plot2)
+\end{figure}
 
 \@ref(fig:plot2) shows the bar plotted tests of both countries. The x axis has the names of both countries and the y axis shows the upper yield of the nuclear tests of those countries. It can be clearly seen that the US's nuclear tests goes all the way up to the point above 200000. Meanwhile French tests only reach a point that is below 50000 and around 10000 upper yield. This is also a clear indication that the tests of the US were way more effective than the ones of France's.
 
